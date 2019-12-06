@@ -1,0 +1,12 @@
+html
+  head
+    title APP
+  body
+    header
+      h1 Tareas
+      a(href=link) Cerrar session
+      h4
+        a(href="/guardar") Agregar nuevo tarea
+    ul
+      each task in tasks
+        li= task.name
