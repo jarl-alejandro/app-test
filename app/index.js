@@ -4,11 +4,10 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+const config = require('./config')
 const Tasks = require('./Tasks')
 
 const PORT = process.env.PORT || 5002
-const DB = 'mongodb://localhost/dockerizando'
-
 const app = new express()
 const server = http.createServer(app)
 
@@ -37,7 +36,7 @@ app.post('/register', async (req, res) => {
 mongoose.Promise = global.Promise
 mongoose.set('useUnifiedTopology', true)
 
-mongoose.connect(DB, { useNewUrlParser: true })
+mongoose.connect(config.database.uri, { useNewUrlParser: true })
 .then(() => {
   server.listen(PORT, () => {
     console.log('Conectado a MongoDB')
