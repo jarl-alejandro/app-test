@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const config = require('./config')
 const Tasks = require('./Tasks')
 
-const PORT = process.env.PORT || 6002
+const PORT = process.env.PORT || 6001
 const server = http.createServer((req, res) => res.end('WebSocket'))
 const io = require('socket.io')(server)
 

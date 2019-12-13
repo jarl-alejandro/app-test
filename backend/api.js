@@ -7,7 +7,7 @@ const cors = require('cors')
 const config = require('./config')
 const Tasks = require('./Tasks')
 
-const PORT = process.env.PORT || 4001
+const PORT = process.env.PORT || 4000
 const app = new express()
 const server = http.createServer(app)
 
