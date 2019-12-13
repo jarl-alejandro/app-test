@@ -1,12 +1,31 @@
 html
-  head
-    title APP
-  body
-    header
-      h1 Tareas
-      a(href=link) Cerrar session
-      h4
-        a(href="/guardar") Agregar nuevo tarea
-    ul
-      each task in tasks
-        li= task.name
+	head
+		meta(charset="utf-8")
+		meta(
+			id="viewport"
+			name="viewport"
+			content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover"
+		)
+
+		meta(name="mobile-web-app-capable" content="yes")
+		meta(name="apple-mobile-web-title" content="Agicla")
+		meta(name="apple-mobile-web-app-status-bar-style" content="#f9f9f9")
+		meta(name="apple-mobile-web-app-capable" content="yes")
+		meta(name="theme-color" content="#f9f9f9")
+		meta(name="msapplication-starturl" content="/")
+		title APP
+	body
+		input#api(type="hidden" value=api)
+		input#io(type="hidden" value=io)
+		header
+			h1 Tareas
+			a(href=link) Cerrar session
+		section#form
+			div
+				label(for="name") Nombre de la tarea
+				input#name(type="text" name="name")
+			button(type="submit" id="button") Guardar
+
+		ul#listTasks
+		script(src=ioURL)
+		script(src="/index.js")

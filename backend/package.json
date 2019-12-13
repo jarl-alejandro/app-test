@@ -15,7 +15,6 @@
   "scripts": {
     "start::api": "NODE_ENV=production node api.js",
     "dev::api": "nodemon api.js",
-
     "start::io": "NODE_ENV=production node io.js",
     "dev::io": "nodemon io.js"
   },

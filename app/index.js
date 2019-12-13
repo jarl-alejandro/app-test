@@ -1,45 +1,24 @@
 const http = require('http')
 const express = require('express')
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-
-const config = require('./config')
-const Tasks = require('./Tasks')
 
 const PORT = process.env.PORT || 5002
 const app = new express()
 const server = http.createServer(app)
 
+app.use(express.static('public'))
 app.set('view engine', 'pug')
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors('*'))
 
 app.get('/', async (req, res) => {
-  const tasks = await Tasks.find({})
   const link = process.env.NODE_ENV !== 'production' ? 'http://localhost:3001' : 'http://a3manager.com'
+  const api = process.env.NODE_ENV !== 'production' ? 'http://localhost:4001' : 'http://api.a3manager.com'
+  const io = process.env.NODE_ENV !== 'production' ? 'http://localhost:6002' : 'http://io.a3manager.com'
 
-  res.render('index', { link, tasks })
+  const ioURL = process.env.NODE_ENV !== 'production' ? 'http://localhost:6002/socket.io/socket.io.js' : 'http://io.a3manager.com/socket.io/socket.io.js'
+
+  res.render('index', { link, io, api, ioURL })
 })
 
-app.get('/guardar', (req, res) => {
-  res.render('form')
-})
-
-app.post('/register', async (req, res) => {
-  await Tasks.create({ name: req.body.name })
-
-  res.redirect('/')
-})
-
-mongoose.Promise = global.Promise
-mongoose.set('useUnifiedTopology', true)
-
-mongoose.connect(config.database.uri, { useNewUrlParser: true })
-.then(() => {
-  server.listen(PORT, () => {
-    console.log('Conectado a MongoDB')
-    console.log(`Sever running in http://localhost:${PORT}`)
-  })
+server.listen(PORT, () => {
+  console.log('Conectado a MongoDB')
+  console.log(`Sever running in http://localhost:${PORT}`)
 })
