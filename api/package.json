@@ -7,16 +7,12 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "js-yaml": "^3.13.1",
-    "mongoose": "^5.8.1",
-    "socket.io": "^2.3.0"
+    "mongoose": "^5.8.1"
   },
   "devDependencies": {},
   "scripts": {
-    "start::api": "NODE_ENV=production node api.js",
-    "dev::api": "nodemon api.js",
-    "start::io": "NODE_ENV=production node io.js",
-    "dev::io": "nodemon io.js"
+    "start": "NODE_ENV=production node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC"
